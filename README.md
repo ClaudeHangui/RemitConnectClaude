@@ -24,7 +24,7 @@ The purpose of the project was which provides a simple and intuitive way for use
 
 **Project Constraints**
 
-- We created functions to generate user data; that data is saved in ShaaredPreferences: the data consist of name - balance. Once the app's cache is cleared new values are generated for these. The balance get's updated after every successful transaction. We were required to work using € as our main curreny. Therefore this currency is used through the app in a static manner.
+- We created functions to generate user data; that data is saved in ShaaredPreferences: the data consist of name - balance. Once the app's cache is cleared new values are generated for these. The balance get's updated after every successful transaction. We were required to work using € as our main curreny. Therefore this currency is used through the app in a static manner. We have a helper class that allow us to manage all the statc data that should be provided on the UI
 
 - API endpoints: there was some inconsistency in the endpoints for the list of countries & the list of recipients. Precisely, the country Morocco is written in French in the endpoints to get the recipients and in english for the other.
   We used those fields in our work so we had to forcefully set the value for that country to be equal in both endpoints for consistency.
