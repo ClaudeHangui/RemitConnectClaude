@@ -53,7 +53,10 @@ fun RecipientDetailsScreen(
     Column(modifier = Modifier.fillMaxSize()) {
         RecipientTopSection(
             currentTab,
-            popBackStack = { navController.popBackStack() },
+            popBackStack = {
+                navController.popBackStack()
+                viewModel.resetState()
+            },
             modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 24.dp),
             onTabChange = { tab ->
                 query = ""

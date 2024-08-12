@@ -56,11 +56,14 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getLatestTransactions() = viewModelScope.launch(Dispatchers.IO) {
+    private fun getLatestTransactions() = viewModelScope.launch(Dispatchers.Main) {
+        _homeState.update {
+            it.copy(loading = true)
+        }
         transactionsRepository.getAllTransactions().collectLatest { transactions ->
             withContext(Dispatchers.Main){
                 _homeState.update {
-                    it.copy(latestTransactions = transactions)
+                    it.copy(latestTransactions = transactions, loading = false)
                 }
             }
         }

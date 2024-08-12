@@ -160,7 +160,7 @@ fun BalanceCard(
     balance: String,
     inputCardColorState: InputCardColorState, onInputChange: (String) -> Unit
 ) {
-    var inputAmount by remember { mutableStateOf(TextFieldValue("0")) }
+    var inputAmount by remember { mutableStateOf(TextFieldValue("")) }
     val focusRequester = remember { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
 

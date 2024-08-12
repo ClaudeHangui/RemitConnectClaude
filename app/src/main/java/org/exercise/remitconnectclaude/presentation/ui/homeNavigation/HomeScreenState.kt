@@ -8,5 +8,6 @@ data class HomeScreenState(
     val userBalance: String = "",
     val userCurrency: String = "",
     val internalOperations: List<SupportedInternalOperationItem> = emptyList(),
-    val latestTransactions: List<Transaction> = emptyList()
+    val latestTransactions: List<Transaction> = emptyList(),
+    val loading: Boolean = false
 )

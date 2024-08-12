@@ -1,5 +1,6 @@
 package org.exercise.remitconnectclaude.presentation.ui.sendMoney
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -34,6 +36,7 @@ fun SelectMoneyToAfricaScreen(
     onSendMoneySelected: () -> Unit,
     sendMoneyViewModel: SendMoneyViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
     ConstraintLayout {
         val (backIcon, sendTransferTypeLabel, subMoneyTransferTypes) = createRefs()
 
@@ -75,7 +78,7 @@ fun SelectMoneyToAfricaScreen(
                 }
         )
 
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
@@ -98,16 +101,24 @@ fun SelectMoneyToAfricaScreen(
             }
 
             items(sendMoneyViewModel.methodsToSentToAfrica) { item ->
-                Box(modifier = Modifier
-                    .wrapContentHeight()
-                    .padding(16.dp)){
+                Box(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .padding(16.dp)
+                ) {
                     SendMoneyCard(sendMoneyType = item, onClick = { id, name ->
-                        onSendMoneySelected.invoke()
+                        if (!name.equals("Mobile wallets", true)) {
+                            Toast.makeText(context, "Feature in implementation", Toast.LENGTH_SHORT)
+                                .show()
+                        } else
+                            onSendMoneySelected.invoke()
                     })
                 }
 
-                Divider(color = colorResource(id = R.color.notification_bgd),
-                    thickness = 1.dp)
+                Divider(
+                    color = colorResource(id = R.color.notification_bgd),
+                    thickness = 1.dp
+                )
             }
         }
     }

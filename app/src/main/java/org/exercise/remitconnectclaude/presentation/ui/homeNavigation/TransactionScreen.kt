@@ -41,6 +41,9 @@ import androidx.navigation.NavController
 import org.exercise.remitconnectclaude.R
 import org.exercise.remitconnectclaude.data.Transaction
 import org.exercise.remitconnectclaude.presentation.HomeViewModel
+import org.exercise.remitconnectclaude.presentation.ui.recipientDetails.EmptyScreenState
+import org.exercise.remitconnectclaude.presentation.ui.recipientDetails.NoResultsScreen
+import org.exercise.remitconnectclaude.presentation.ui.utils.ShowLoader
 import org.exercise.remitconnectclaude.presentation.ui.utils.SupportedInternalOperationItem
 
 @Composable
@@ -225,12 +228,38 @@ fun TransactionScreen(
             }
 
             val latestTransactions = state.latestTransactions
-
             item {
-                latestTransactions.forEach {
-                    TransactionItemCard(modifier = Modifier,item = it)
+                if (state.loading){
+                    ShowLoader()
+                }
+
+                if (state.latestTransactions.isEmpty()){
+                    NoResultsScreen(modifier = Modifier.fillMaxWidth(), EmptyScreenState.PreviousTransactions)
+                } else {
+                    latestTransactions.forEach {
+                        TransactionItemCard(modifier = Modifier,item = it)
+                    }
                 }
             }
+
+            /*
+            if (state.loading){
+                item {
+                    ShowLoader()
+                }
+            }
+            if (state.latestTransactions.isEmpty()){
+                item {
+                    NoResultsScreen(modifier = Modifier.fillMaxWidth(), EmptyScreenState.PreviousTransactions)
+                }
+            } else {
+                item {
+                    latestTransactions.forEach {
+                        TransactionItemCard(modifier = Modifier,item = it)
+                    }
+                }
+            }
+            */
 
             item {
                 Spacer(modifier = Modifier.padding(32.dp))
