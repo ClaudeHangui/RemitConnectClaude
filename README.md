@@ -31,6 +31,6 @@ We were required to work using € as our main curreny. Therefore this currency 
 - Database: Every new recipient that gets added after a transaction requires an Id. Since the endpoint has the field provided, we were required to keep some consistency in the ID's that we generated. We used the last ID from the list of recipients endpoint
   That ID was incremented to a new value, and it the latter that is used after the first transaction that we perform.  Every subsequent transaction we make will rely on the last Id saved in our SharedPreference.
 - UI : Some screens had very complex designs and considerirng the functionality associated to them we needed to be very mindful as to how we limit/define the responsabilites of our Viewmodels towards our composables.
-  The composable themselves had to be extracted as small pieces to be able to properly manage their states
+  The composable themselves had to be extracted as small pieces to be able to properly manage their states. We realized that some colors on the design were not always consistent after installing the app. This might be device-sepcific though 
 
 
